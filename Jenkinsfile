@@ -1,5 +1,9 @@
 pipeline {
 	agent any
+    tools {
+        maven 'Maven'
+    }
+
 	environment {
 	DOCKERHUB_CREDENTIALS = credentials('09fd92cd-bf60-4748-81b6-27076c2a5f5d')
 	BUILD_TIMESTAMP = "${new Date().format("yyyyMMdd-HHmmss")}"
