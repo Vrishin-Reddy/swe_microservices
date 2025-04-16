@@ -38,8 +38,8 @@ pipeline {
             
         stage("Apply Kubernetes Updates") {
             steps {
-                sh 'kubectl set image deployment/reddys-microservice container-1=vrishin/student-survey-api:$TIMESTAMP_VERSION -n default'
-                sh 'kubectl rollout status deployment/reddys-microservice -n default'
+                sh 'kubectl set image deployment/reddys-microservices container-1=vrishin/student-survey-api:$TIMESTAMP_VERSION -n default'
+                sh 'kubectl rollout status deployment/reddys-microservices -n default'
             }
         }
     }
