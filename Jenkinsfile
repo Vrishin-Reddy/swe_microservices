@@ -15,7 +15,7 @@ pipeline {
                 script {
                     sh 'rm -rf ./*.jar'
                     sh 'mvn clean install -DskipTests'
-                    sh 'sudo docker build -t vrishin/student-survey-api:$TIMESTAMP_VERSION .'
+                    sh 'sudo docker build -t vrishin/student-survey-api-micro:$TIMESTAMP_VERSION .'
                 }
             }    
         }
@@ -31,15 +31,15 @@ pipeline {
         stage("Publish Container Image") {
             steps {
                 script {
-                    sh 'sudo docker push vrishin/student-survey-api:$TIMESTAMP_VERSION'
+                    sh 'sudo docker push vrishin/student-survey-api-micro:$TIMESTAMP_VERSION'
                 }
             }
         }
             
         stage("Apply Kubernetes Updates") {
             steps {
-                sh 'kubectl set image deployment/reddys-microservices container-1=vrishin/student-survey-api:$TIMESTAMP_VERSION -n default'
-                sh 'kubectl rollout status deployment/reddys-microservices -n default'
+                sh 'kubectl set image deployment/swe-micros container-1=vrishin/student-survey-api-micro:$TIMESTAMP_VERSION -n default'
+                sh 'kubectl rollout status deployment/swe-micros -n default'
             }
         }
     }

@@ -6,4 +6,4 @@ COPY target/*.jar service.jar
 
 EXPOSE 8080
 
-CMD ["java", "-jar", "/application/service.jar"]
+CMD ["java", "-jar", "/app/service.jar"]
