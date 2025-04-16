@@ -8,7 +8,7 @@ pipeline {
 	stages {
 		stage("Building the Student microservice") {
 			steps{
-				dir() {
+				script{
                     sh 'rm -rf ./*.jar'
                     sh 'mvn clean install -DskipTests'
 					sh 'sudo docker build -t vrishin/student-survey-api:$BUILD_TIMESTAMP .'
